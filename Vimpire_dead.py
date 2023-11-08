@@ -322,7 +322,7 @@ timer = 0
 start_atack_time = 0
 green_enemy_spawn = 0 
 
-hero = Hero('my_rog/Char_frames')
+hero = Hero('Char_frames')
 lvl_up_choes = False
 font = pg.font.Font(None, 24)
 
@@ -331,20 +331,20 @@ enemes = pg.sprite.Group()
 upgrade_rate = 600
 atacks = pg.sprite.Group()
 
-game_over_img = pg.image.load('my_rog/game_over.png')
+game_over_img = pg.image.load('game_over.png')
 game_over_img_rect = game_over_img.get_rect(center = (weight/2, hight/2.5))
 
-restart_img = pg.image.load('my_rog/restart_button.png')
+restart_img = pg.image.load('restart_button.png')
 restart_img = pg.transform.scale_by(restart_img, 0.08)
 restart_img.set_colorkey('white')
 restart_img_rect = restart_img.get_rect(center = (weight/2, hight/2.5 + game_over_img_rect.height + 20))
 
 upgrades_img = []
-for i in os.listdir('my_rog/level_ups'):
-    upgrades_img.append([pg.image.load(f'my_rog/level_ups/{i}'), i.replace('.png', '')])
+for i in os.listdir('level_ups'):
+    upgrades_img.append([pg.image.load(f'level_ups/{i}'), i.replace('.png', '')])
 
 
-back_img = 'my_rog/1677366330_foni-club-p-piksel-art-trava-3.png'
+back_img = '1677366330_foni-club-p-piksel-art-trava-3.png'
 for i in range(-100, weight+100, 100): 
     for b in range(-100, hight+100, 100):
         back = Background(back_img, i, b, all_stat['hero']['speed'])
@@ -376,7 +376,7 @@ while on:
          
         if len(enemes) > 0 and timer - start_atack_time >= all_stat['start_atack']['atack_speed']:
             if mouse_push[0]:
-                atack = Atack('my_rog/Stones.png')
+                atack = Atack('Stones.png')
                 atacks.add(atack)
                 start_atack_time = timer
 
@@ -384,7 +384,7 @@ while on:
             enemy_teg = random.randint(1, 100)
             if enemy_teg <= all_stat['enemy_green']['chance']:
                 enemy_big_bat = enemy(
-                                'my_rog/Enemy_big_bat_frames', 
+                                'Enemy_big_bat_frames', 
                                 all_stat['enemy_green']['speed'] * 1.1, 
                                 all_stat['enemy_green']['Hp'] * 5, 
                                 0.4, 
@@ -393,7 +393,7 @@ while on:
                 enemes.add(enemy_big_bat)
             else:
                 enemy_bat = enemy(
-                            'my_rog/Enemy_bat_frames', 
+                            'Enemy_bat_frames', 
                             all_stat['enemy_green']['speed'], 
                             all_stat['enemy_green']['Hp'], 
                             0.1, 
@@ -463,7 +463,7 @@ while on:
                 all_stat = copy.deepcopy(all_stat_start)    
                 enemes.remove(enemes)
                 atacks.remove(atacks)
-                hero = Hero('my_rog/Char_frames')
+                hero = Hero('Char_frames')
                 
     clock.tick(40)
 
